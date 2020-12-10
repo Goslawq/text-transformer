@@ -7,10 +7,11 @@ import pl.put.poznan.transformer.logic.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import java.util.Arrays;
 
 /** main function. As arguments takes string you want to transform put in "<>" and transformation commands.
- *     ex. "<Tekst do przetworzenia> upper invert"
+ *     ex. "<Untransformed text example> upper invert"
  */
 @SpringBootApplication(scanBasePackages = {"pl.put.poznan.transformer.rest"})
 public class TextTransformerApplication {
@@ -24,21 +25,19 @@ public class TextTransformerApplication {
         TextInterface primeText = new ConcreteText(text);
         String[] commands = input.substring(input.indexOf(">")+2).split(" ");
 
-        logger.debug("Showing text before transformation...");
-        System.out.println(text);
+        logger.debug("Showing text before transformation:" + text);
         logger.debug("Creating nested decorators");
         TextInterface output = transformer(commands, primeText);
-        logger.debug("Transformating input");
+        logger.debug("Starting transformations");
         String finalText = output.getTransformedText();
-        logger.debug("Showing output...");
-        System.out.println(finalText);
+        logger.info("Showing output:" + finalText);
     }
 
     /**
-     * The function returns nested decorators
-     * @param commands
-     * @param textForTransformation
-     * @return
+     * The function returns nested decorators.
+     * @param commands a list of parsed string commands
+     * @param textForTransformation string parsed for transformation
+     * @return nested TextInterface object
      */
 
     public static TextInterface transformer(String[] commands, TextInterface textForTransformation){
@@ -57,10 +56,6 @@ public class TextTransformerApplication {
                 case "invert":
                     transformer = new InverseTextDecorator(transformer);
                     break;
-
-                /**
-                 * Do I throw exceptions here in case command is not recognised?
-                 */
             }
         }
         return transformer;
