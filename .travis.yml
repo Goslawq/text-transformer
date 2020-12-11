@@ -1,4 +1,3 @@
 language: Java
 script:
- - bundle exec mvn install
- - bundle exec mvn package
+ - mvn package
