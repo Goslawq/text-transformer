@@ -22,6 +22,7 @@ public class TextTransformerApplication {
 
         String input = String.join(" ", args);
         String text = input.substring(input.indexOf("<")+1,input.indexOf(">"));
+        // FIXME: obsługa błędu jeżeli użytkownik nie poda tekstu w <> (StringIndexOutOfBoundsException)
         TextInterface primeText = new ConcreteText(text);
         String[] commands = input.substring(input.indexOf(">")+2).split(" ");
 
@@ -61,10 +62,10 @@ public class TextTransformerApplication {
         return transformer;
     }
 
-    /**
+    /*
      * Temporary demo function for showing everyone the required syntax/concepts
      */
-    /**
+    /*
     public static void runDemo(){
         System.out.println("Hello World!");
         Logger logger = LoggerFactory.getLogger("DemoLogger");
