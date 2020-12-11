@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-/** main function. As arguments takes string you want to transform put in "<>" and transformation commands.
- *     ex. "<Untransformed text example> upper invert"
+/** main function. As arguments takes string you want to transform put in "" and transformation commands.
+ *     ex. "Untransformed text example upper invert"
  */
 @SpringBootApplication(scanBasePackages = {"pl.put.poznan.transformer.rest"})
 public class TextTransformerApplication {

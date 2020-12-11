@@ -15,6 +15,6 @@ deploy:
     github_token: $GITHUB_OAUTH_TOKEN
     keep_history: true
     target_branch: gh-pages
-    local_dir: ./apidocs
+    local_dir: ./target/site/apidocs
     on:
       branch: main
