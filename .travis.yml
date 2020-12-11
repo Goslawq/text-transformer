@@ -3,7 +3,7 @@ script:
 - mvn package
 deploy:
   provider: releases
-  file: "./target/*.jar"
+  file: "./*.jar"
   skip_cleanup: true
   draft: true
   api_key: $GITHUB_OAUTH_TOKEN
