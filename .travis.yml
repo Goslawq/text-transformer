@@ -1,12 +1,20 @@
 language: java
 script:
-- mvn package
+  - mvn package javadoc:javadoc
 deploy:
-  provider: releases
-  file_glob: true
-  file: target/*.jar
-  skip_cleanup: true
-  draft: true
-  api_key: $GITHUB_OAUTH_TOKEN
-  on:
-   branch: main
+  - provider: releases
+    file_glob: true
+    file: target/*.jar
+    skip_cleanup: true
+    draft: true
+    api_key: $GITHUB_OAUTH_TOKEN
+    on:
+      branch: main
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_OAUTH_TOKEN
+    keep_history: true
+    target_branch: gh-pages
+    local_dir: ./apidocs
+    on:
+      branch: main
