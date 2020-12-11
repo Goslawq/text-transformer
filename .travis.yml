@@ -1,7 +1,6 @@
 language: java
 script:
 - mvn package
-- mvn deploy
 deploy:
   provider: releases
   file: "./target/*.jar"
