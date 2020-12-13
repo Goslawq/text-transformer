@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-/** main function. As arguments takes string you want to transform put in "" and transformation commands.
- *     ex. "Untransformed text example upper invert"
+/** main function. As arguments takes string you want to transform put in "[]" and transformation commands.
+ *     ex. "[Untransformed text example] upper invert"
  */
 @SpringBootApplication(scanBasePackages = {"pl.put.poznan.transformer.rest"})
 public class TextTransformerApplication {
@@ -21,10 +21,10 @@ public class TextTransformerApplication {
         logger.info("Starting app...");
 
         String input = String.join(" ", args);
-        String text = input.substring(input.indexOf("<")+1,input.indexOf(">"));
+        String text = input.substring(input.indexOf("[")+1,input.indexOf("]"));
         // FIXME: obsługa błędu jeżeli użytkownik nie poda tekstu w <> (StringIndexOutOfBoundsException)
         TextInterface primeText = new ConcreteText(text);
-        String[] commands = input.substring(input.indexOf(">")+2).split(" ");
+        String[] commands = input.substring(input.indexOf("]")+2).split(" ");
 
         logger.debug("Showing text before transformation:" + text);
         logger.debug("Creating nested decorators");
