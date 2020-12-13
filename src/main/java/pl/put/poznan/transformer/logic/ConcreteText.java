@@ -6,6 +6,10 @@ package pl.put.poznan.transformer.logic;
 public class ConcreteText implements TextInterface {
     String text_field;
 
+    /**
+     * Creates ConcreteText instance with a given string, which can be used to provide starting text for decorators
+     * @param startingText
+     */
     public ConcreteText(String startingText) {
         this.text_field = startingText;
     }

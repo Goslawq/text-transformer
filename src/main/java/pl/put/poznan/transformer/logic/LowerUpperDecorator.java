@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
  */
 
 public class LowerUpperDecorator extends TextInterfaceDecorator {
+    private static final Logger logger = LoggerFactory.getLogger(LowerUpperDecorator.class);
     private final int mode;
     public LowerUpperDecorator(TextInterface text_input_instance, int mode) {
         super(text_input_instance);
@@ -30,7 +31,6 @@ public class LowerUpperDecorator extends TextInterfaceDecorator {
 
     @Override
     public String getTransformedText() {
-        Logger logger = LoggerFactory.getLogger("UpperLowerCapitalize");
         logger.debug("Computing deeper transformations");
         String input = super.getTransformedText();
         String output = null;

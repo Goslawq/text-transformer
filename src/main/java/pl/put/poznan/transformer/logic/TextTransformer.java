@@ -1,20 +1,46 @@
 package pl.put.poznan.transformer.logic;
 
 /**
- * This is just an example to show that the logic should be outside the REST service.
+ * Main logic here - this the part that creates and executes given transformations
  */
 public class TextTransformer {
+    private final String[] commands;
 
-    private final String[] transforms;
-
-    public TextTransformer(String[] transforms){
-        this.transforms = transforms;
+    /**
+     * Only available constructor
+     * @param params a list of transactions in the desired order.
+     * Available transformations are: upper, lower, capitalize, invert
+     */
+    public TextTransformer(String[] params){
+        this.commands=params;
     }
 
+    /**
+     * The function returns given text after transformations (choosen when creating the instance).
+     * @param text text for transformation
+     * @return Text after transformations have been applied
+     */
     public String transform(String text){
-        // of course, normally it would do something based on the transforms
-        return text.toUpperCase();
+        TextInterface textForTransformation = new ConcreteText(text);
+        TextInterface transformer = textForTransformation;
+        for (String command : this.commands) {
+            switch (command) {
+                case "upper":
+                    transformer = new LowerUpperDecorator(transformer, 0);
+                    break;
+                case "lower":
+                    transformer = new LowerUpperDecorator(transformer, 1);
+                    break;
+                case "capitalize":
+                    transformer = new LowerUpperDecorator(transformer, 2);
+                    break;
+                case "invert":
+                    transformer = new InverseTextDecorator(transformer);
+                    break;
+            }
+        }
+        return transformer.getTransformedText();
     }
-
-
 }
+
+

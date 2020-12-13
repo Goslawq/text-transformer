@@ -3,12 +3,14 @@ package pl.put.poznan.transformer.logic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * This class is responsible for inversing the text while preserving its Upper/Lower case formatting.
  * For example "AaBbBcccc" should be transformed to "CcCcBbbaa"
  * This class extends TextInterfaceDecorator
  */
 public class InverseTextDecorator extends TextInterfaceDecorator {
+    private static final Logger logger = LoggerFactory.getLogger(InverseTextDecorator.class);
     public InverseTextDecorator(TextInterface text_input_instance) {
         super(text_input_instance);
     }
@@ -19,7 +21,6 @@ public class InverseTextDecorator extends TextInterfaceDecorator {
      */
     @Override
     public String getTransformedText() {
-        Logger logger = LoggerFactory.getLogger("InverseTextDecorator");
         logger.debug("Computing deeper transformations");
         String input = super.getTransformedText();
         logger.debug("Got input: "+input);
