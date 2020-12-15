@@ -16,13 +16,12 @@ public class TextTransformer {
     }
 
     /**
-     * The function returns given text after transformations (choosen when creating the instance).
+     * The function returns given text after transformations (chosen when creating the instance).
      * @param text text for transformation
      * @return Text after transformations have been applied
      */
     public String transform(String text){
-        TextInterface textForTransformation = new ConcreteText(text);
-        TextInterface transformer = textForTransformation;
+        TextInterface transformer = new ConcreteText(text);
         for (String command : this.commands) {
             switch (command) {
                 case "upper":

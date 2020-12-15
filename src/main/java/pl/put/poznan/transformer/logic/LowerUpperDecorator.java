@@ -33,7 +33,8 @@ public class LowerUpperDecorator extends TextInterfaceDecorator {
     public String getTransformedText() {
         logger.debug("Computing deeper transformations");
         String input = super.getTransformedText();
-        String output = null;
+        String output = "";
+
         logger.debug("Got input: " + input);
         if (this.mode == 0) {
             logger.debug("Upper all characters");
@@ -43,7 +44,14 @@ public class LowerUpperDecorator extends TextInterfaceDecorator {
             output = input.toLowerCase();
         } else if (this.mode ==2) {
             logger.debug("Capitalize input");
-            output = input.substring(0, 1).toUpperCase() + input.substring(1);
+            int i = 0;
+            String[] words = input.split(" ");
+            for(String word: words){
+                words[i] = word.substring(0,1).toUpperCase() + word.substring(1);
+                i = i+1;
+            }
+            output = String.join(" ",words);
+            //output = input.substring(0, 1).toUpperCase() + input.substring(1);
         }
         logger.debug("Returning output: " + output);
         return output;
