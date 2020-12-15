@@ -36,6 +36,8 @@ public class TextTransformer {
                 case "invert":
                     transformer = new InverseTextDecorator(transformer);
                     break;
+                case "latex":
+                    transformer = new LaTeXDecorator(transformer);
             }
         }
         return transformer.getTransformedText();

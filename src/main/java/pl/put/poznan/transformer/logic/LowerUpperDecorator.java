@@ -51,7 +51,6 @@ public class LowerUpperDecorator extends TextInterfaceDecorator {
                 i = i+1;
             }
             output = String.join(" ",words);
-            //output = input.substring(0, 1).toUpperCase() + input.substring(1);
         }
         logger.debug("Returning output: " + output);
         return output;
