@@ -12,8 +12,8 @@ import java.util.Scanner;
 /***
  * Class that shortens words to their abbreviations and extends them to full form.
  * Takes boolean 'mode' attribute which specify operation that should be performed:
- * mode = true -> extend abbreviations
- * mode = false -> shorten words to abbreviations
+ * mode = true - extend abbreviations
+ * mode = false - shorten words to abbreviations
  * The dictionary file (user_dictionary.txt), containing words to shorten/extend
  * is placed in the main directory of this program - feel free to edit it so that the program lives up to your expectations.
  * All words in user_dictionary should be in lowercase - replacement will be performed automatically also with their first-capital-letter form.
