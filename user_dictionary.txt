@@ -1,0 +1,12 @@
+np.;na przykład
+prof.;profesor
+m. in.;między innymi
+dr;doktor
+itp.;i tym podobne
+itd.;i tak dalej
+inż.;inżynier
+mgr;magister
+nr;numer
+cdn.;ciąg dalszy nastąpi
+br.;bieżącego roku
+jęz.;język

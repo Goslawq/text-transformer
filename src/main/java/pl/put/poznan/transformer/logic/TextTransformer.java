@@ -38,6 +38,13 @@ public class TextTransformer {
                     break;
                 case "latex":
                     transformer = new LaTeXDecorator(transformer);
+                    break;
+                case "shorten":
+                    transformer = new AbbreviationDecorator(transformer,false);
+                    break;
+                case "extend":
+                    transformer = new AbbreviationDecorator(transformer,true);
+                    break;
             }
         }
         return transformer.getTransformedText();
