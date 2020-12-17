@@ -42,13 +42,12 @@ public class TextTransformer {
                 case "extend":
                     transformer = new AbbreviationDecorator(transformer,true);
                     break;
-                /*case "double":
+                case "double":
                     transformer= new DeleteDoubleDecorator(transformer);
                     break;
                 case "number":
                     transformer = new NumToTextDecorator(transformer);
-
-               */
+                    break;
                 case "invert":
                     transformer = new InverseTextDecorator(transformer);
                     break;

@@ -1,5 +1,8 @@
-/*package pl.put.poznan.transformer.logic;
+package pl.put.poznan.transformer.logic;
 
+
+
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.text.DecimalFormat;
@@ -96,75 +99,93 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
 
     @Override
     public String getTransformedText() {
-        Long number=Long.parseLong(super.getTransformedText());
-        // od 0 do 999 999 999 999
-        if (number == 0) { return "zero"; }
-        if (number > 999999999999L) { return Long.toString(number); }
-        String snumber = Long.toString(number);
+        String[] text = super.getTransformedText().split(" ");
+        String output = "";
+        for (String t : text) {
+            try {
+                Long number = Long.parseLong(t);
 
-        // maskujemy zerami
-        String mask = "000000000000";
-        DecimalFormat df = new DecimalFormat(mask);
-        snumber = df.format(number);
+                // od 0 do 999 999 999 999
+                if (number == 0) {
+                    return "zero";
+                }
+                if (number > 999999999999L) {
+                    return Long.toString(number);
+                }
+                String snumber = Long.toString(number);
 
-        // XXX000000000
-        int billions = Integer.parseInt(snumber.substring(0,3));
-        // 000XXX000000
-        int millions  = Integer.parseInt(snumber.substring(3,6));
-        // 000000XXX000
-        int hundredThousands = Integer.parseInt(snumber.substring(6,9));
-        // 000000000XXX
-        int thousands = Integer.parseInt(snumber.substring(9,12));
+                // maskujemy zerami
+                String mask = "000000000000";
+                DecimalFormat df = new DecimalFormat(mask);
+                snumber = df.format(number);
 
-        String tradBillions;
-        switch (billions) {
-            case 0:
-                tradBillions = "";
-                break;
-            case 1 :
-                tradBillions=return_num_part(billions,"miliard");
-                break;
-            default :
-                tradBillions=return_num_part(billions,"miliard");
-        }
-        String result =  tradBillions;
+                // XXX000000000
+                int billions = Integer.parseInt(snumber.substring(0, 3));
+                // 000XXX000000
+                int millions = Integer.parseInt(snumber.substring(3, 6));
+                // 000000XXX000
+                int hundredThousands = Integer.parseInt(snumber.substring(6, 9));
+                // 000000000XXX
+                int thousands = Integer.parseInt(snumber.substring(9, 12));
 
-        String tradMillions;
-        switch (millions) {
-            case 0:
-                tradMillions = "";
-                break;
-            case 1 :
-                tradMillions= return_num_part(millions,"milion");
-                break;
-            default :
-                tradMillions = return_num_part(millions,"milion");
-        }
-        result =  result + tradMillions;
+                String tradBillions;
+                switch (billions) {
+                    case 0:
+                        tradBillions = "";
+                        break;
+                    case 1:
+                        tradBillions = return_num_part(billions, "miliard");
+                        break;
+                    default:
+                        tradBillions = return_num_part(billions, "miliard");
+                }
+                String result = tradBillions;
 
-        String tradHundredThousands;
-        switch (hundredThousands) {
-            case 0:
-                tradHundredThousands = "";
-                break;
-            case 1 :
-                tradHundredThousands = "tysiąc ";
-                break;
-            default :
-                if(hundredThousands<2){ tradHundredThousands= "tysiąc ";}
-                else if(hundredThousands<5){ tradHundredThousands = convertLessThanOneThousand(hundredThousands)
-                        + " tysięce ";}
-                else{
-                    tradHundredThousands = convertLessThanOneThousand(hundredThousands)
-                            + " tysięcy ";}
-        }
-        result =  result + tradHundredThousands;
+                String tradMillions;
+                switch (millions) {
+                    case 0:
+                        tradMillions = "";
+                        break;
+                    case 1:
+                        tradMillions = return_num_part(millions, "milion");
+                        break;
+                    default:
+                        tradMillions = return_num_part(millions, "milion");
+                }
+                result = result + tradMillions;
 
-        String tradThousand;
-        tradThousand = convertLessThanOneThousand(thousands);
-        result =  result + tradThousand;
+                String tradHundredThousands;
+                switch (hundredThousands) {
+                    case 0:
+                        tradHundredThousands = "";
+                        break;
+                    case 1:
+                        tradHundredThousands = "tysiąc ";
+                        break;
+                    default:
+                        if (hundredThousands < 2) {
+                            tradHundredThousands = "tysiąc ";
+                        } else if (hundredThousands < 5) {
+                            tradHundredThousands = convertLessThanOneThousand(hundredThousands)
+                                    + " tysięce ";
+                        } else {
+                            tradHundredThousands = convertLessThanOneThousand(hundredThousands)
+                                    + " tysięcy ";
+                        }
+                }
+                result = result + tradHundredThousands;
 
-        // usuwamy podwójne spacje
-        return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+                String tradThousand;
+                tradThousand = convertLessThanOneThousand(thousands);
+                result = result + tradThousand;
+
+                // usuwamy podwójne spacje
+                //return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+                output = output+" "+result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+            } catch (NumberFormatException n) {
+                output = output+" "+t;
+                //throw new InvalidInputException(strings[t]);
+            }}
+        return output;
     }
-}*/
+}
