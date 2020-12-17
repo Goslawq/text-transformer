@@ -51,6 +51,9 @@ public class TextTransformer {
                 case "invert":
                     transformer = new InverseTextDecorator(transformer);
                     break;
+                case "reverse":
+                    transformer = new ReverseCaseDecorator(transformer);
+                    break;
             }
         }
         return transformer.getTransformedText();
