@@ -25,7 +25,6 @@ public class LowerUpperDecorator extends TextInterfaceDecorator {
 
     /**
      * Method to get text after the desired transformation.
-     * There are 3 modes, right transformation
      * @return Transformed String
      */
 

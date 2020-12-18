@@ -4,11 +4,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
+/**
+ * Class responsible to transforming operators like #,$,&,{,},_ into LaTeX readable form.
+ * This class extends TextInterfaceDecorator
+ * @author Eliza
+ */
 public class LaTeXDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(LowerUpperDecorator.class);
 
     public LaTeXDecorator(TextInterface text_input){super(text_input);}
-
+    /**
+     * Method to get text after the desired transformation
+     * @return String
+     */
     @Override
     public String getTransformedText(){
         logger.debug("Computing deeper transformations");
