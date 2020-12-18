@@ -45,6 +45,9 @@ public class TextTransformer {
                 case "extend":
                     transformer = new AbbreviationDecorator(transformer,true);
                     break;
+                case "double":
+                    transformer = new deleteDoubleDecorator(transformer);
+                    break;
             }
         }
         return transformer.getTransformedText();

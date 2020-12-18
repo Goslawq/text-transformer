@@ -1,17 +1,18 @@
 package pl.put.poznan.transformer.logic;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Arrays;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class deleteDoubleDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(deleteDoubleDecorator.class);
 
     public deleteDoubleDecorator(TextInterface text_input){super(text_input);}
+
     @Override
-    public String getTranformedtext()
-    {
+    public String getTransformedText() {
         logger.debug("Entered Abbreviation method, var mode="+mode);
         String text = super.getTransformedText();
         String _double = "\\b(\\w+)(?:\\W+\\1\\b)+";
