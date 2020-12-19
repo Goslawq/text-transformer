@@ -7,6 +7,7 @@ import java.util.Arrays;
 /**
  * Class responsible to transforming operators like #,$,{@literal &},{,},_ into LaTeX readable form.
  * This class extends TextInterfaceDecorator
+ * "#abcd" should be transformed to "\#abcd"
  * @author Eliza
  */
 public class LaTeXDecorator extends TextInterfaceDecorator {

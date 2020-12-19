@@ -7,6 +7,10 @@ import org.slf4j.LoggerFactory;
  * Class to upper, lower or capitalize the input.
  * This class extends TextInterfaceDecorator
  * Has a 'mode' attribute that is responsible for assigning right transformation.
+ * 3 modes:
+ * 0 - "abcd" should be transformed to "ABCD"
+ * 1 - "ABCD" should be transformed to "abcd"
+ * 2 - "ab cd" should be transformed to "Ab Cd"
  * @author Eliza
  */
 
