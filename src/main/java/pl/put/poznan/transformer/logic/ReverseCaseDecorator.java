@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import java.text.DecimalFormat;
 
 /**
- * Class reverses Case big letters->small letter and vice versa
+ * Class reverses Case big letters to small letter and vice versa
  */
 
 public class ReverseCaseDecorator extends TextInterfaceDecorator{
