@@ -7,9 +7,19 @@ public class TextTransformer {
     private final String[] commands;
 
     /**
-     * Only available constructor
-     * @param params a list of transactions in the desired order.
-     * Available transformations are: upper, lower, capitalize, invert
+     * Creates TextTransformer instance
+     * @param params a list of transformations in the desired order.
+     * Available transformations are:
+     * upper - consult documentation of LowerUpperDecorator (mode=0)
+     * lower - consult documentation of LowerUpperDecorator (mode=1)
+     * capitalize - consult documentation of LowerUpperDecorator (mode=2)
+     * latex - consult documentation of LaTeXDecorator
+     * shorten - consult documentation of AbbreviationDecorator (mode=false)
+     * extend - consult documentation of AbbreviationDecorator (mode=true)
+     * double - consult documentation of DeleteDoubleDecorator
+     * number - consult documentation of NumToTextDecorator
+     * invert - consult documentation of InverseTextDecorator
+     * reverse - consult documentation of ReverseCaseDecorator
      */
     public TextTransformer(String[] params){
         this.commands=params;

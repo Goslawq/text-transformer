@@ -10,10 +10,15 @@ import java.text.DecimalFormat;
 
 public class ReverseCaseDecorator extends TextInterfaceDecorator{
     private static final Logger logger = LoggerFactory.getLogger(ReverseCaseDecorator.class);
+
+    /**
+     * Creates ReverseCaseDecorator instance
+     * @param text_input deeper TextInterface instance
+     */
     public ReverseCaseDecorator(TextInterface text_input){super(text_input);}
 
     /**
-     * Method to get text after the desired transformation
+     * Method to get text after the desired transformations
      * @return String
      */
     @Override

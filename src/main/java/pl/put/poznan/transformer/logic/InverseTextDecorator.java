@@ -11,6 +11,11 @@ import org.slf4j.LoggerFactory;
  */
 public class InverseTextDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(InverseTextDecorator.class);
+
+    /**
+     * Creates InverseTextDecorator instance
+     * @param text_input_instance deeper TextInterface instance
+     */
     public InverseTextDecorator(TextInterface text_input_instance) {
         super(text_input_instance);
     }

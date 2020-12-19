@@ -8,15 +8,15 @@ import org.slf4j.LoggerFactory;
  * This class extends TextInterfaceDecorator
  * Has a 'mode' attribute that is responsible for assigning right transformation.
  * @author Eliza
- *
  */
 
 public class LowerUpperDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(LowerUpperDecorator.class);
     private final int mode;
+
     /**
-     * Constructor method
-     * @param text_input_instance
+     * Creates LowerUpperDecorator instance
+     * @param text_input_instance deeper TextInterface instance
      * @param mode value from(0 - upper all characters;1 - lower all characters; 2 - capitalize)
      */
     public LowerUpperDecorator(TextInterface text_input_instance, int mode) {

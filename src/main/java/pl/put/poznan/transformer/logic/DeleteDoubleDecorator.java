@@ -6,15 +6,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class the repetition of words written next to each other.
+ * Class responssible for removal of repetition of words written next to each other.
+ * Example "a a abc bc bc" transforms to "a abc bc"
  */
 public class DeleteDoubleDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(DeleteDoubleDecorator.class);
 
+    /**
+     * Creates DeleteDoubleDecorator
+     * @param text_input deeper TextInterface instance
+     */
     public DeleteDoubleDecorator(TextInterface text_input){super(text_input);}
     /**
-     * Method to get text after the desired transformation
-     * @return String
+     * Method to get text after the desired transformations
+     * @return text after the desired transformations
      */
     @Override
     public String getTransformedText()

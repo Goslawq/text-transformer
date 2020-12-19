@@ -13,8 +13,8 @@ public class LaTeXDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(LowerUpperDecorator.class);
 
     /**
-     * Constructor method
-     * @param text_input
+     * Creates LaTeXDecorator instance
+     * @param text_input deeper TextInterface instance
      */
     public LaTeXDecorator(TextInterface text_input){super(text_input);}
     /**
