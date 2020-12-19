@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 /**
- * Class responsible to transforming operators like #,$,&,{,},_ into LaTeX readable form.
+ * Class responsible to transforming operators like #,$,{@literal &},{,},_ into LaTeX readable form.
  * This class extends TextInterfaceDecorator
  * @author Eliza
  */
