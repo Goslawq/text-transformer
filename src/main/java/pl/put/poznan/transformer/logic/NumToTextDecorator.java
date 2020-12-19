@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 
 /**
  * Class that changes the number written to written in text
+ * 99 to dziewiedziesiat dziewiec
  */
 public class NumToTextDecorator extends TextInterfaceDecorator{
     private static final Logger logger = LoggerFactory.getLogger(NumToTextDecorator.class);

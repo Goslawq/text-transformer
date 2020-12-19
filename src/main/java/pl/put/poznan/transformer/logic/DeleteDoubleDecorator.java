@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Class the repetition of words written next to each other.
+ * Halo hAlo hej halo do Halo hej hlo
  */
 public class DeleteDoubleDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(DeleteDoubleDecorator.class);
