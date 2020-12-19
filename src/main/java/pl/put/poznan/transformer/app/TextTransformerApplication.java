@@ -14,7 +14,6 @@ import java.util.Arrays;
  */
 @SpringBootApplication(scanBasePackages = {"pl.put.poznan.transformer.rest"})
 public class TextTransformerApplication {
-
     public static void main(String[] args){
         SpringApplication.run(TextTransformerApplication.class, args);
     }

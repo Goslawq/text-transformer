@@ -53,5 +53,5 @@ public class LowerUpperDecorator extends TextInterfaceDecorator {
         }
         logger.debug("Returning output: " + output);
         return output;
-    };
+    }
 }

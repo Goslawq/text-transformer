@@ -33,9 +33,6 @@ public class TextTransformer {
                 case "capitalize":
                     transformer = new LowerUpperDecorator(transformer, 2);
                     break;
-                case "invert":
-                    transformer = new InverseTextDecorator(transformer);
-                    break;
                 case "latex":
                     transformer = new LaTeXDecorator(transformer);
                     break;
@@ -46,7 +43,16 @@ public class TextTransformer {
                     transformer = new AbbreviationDecorator(transformer,true);
                     break;
                 case "double":
-                    transformer = new deleteDoubleDecorator(transformer);
+                    transformer= new DeleteDoubleDecorator(transformer);
+                    break;
+                case "number":
+                    transformer = new NumToTextDecorator(transformer);
+                    break;
+                case "invert":
+                    transformer = new InverseTextDecorator(transformer);
+                    break;
+                case "reverse":
+                    transformer = new ReverseCaseDecorator(transformer);
                     break;
             }
         }
