@@ -65,7 +65,7 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
 
     //private numToTextDecorator() {}
     /**
-     * class for bilions and milions that uses convertLessThenOneThousand to change them into text
+     * class for billions and millions that uses convertLessThenOneThousand to change them into text
      */
     private static String return_num_part(int number,String num){//usławnia miliony+miliardy
         String _trad;
