@@ -12,6 +12,10 @@ import java.util.Arrays;
 public class LaTeXDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(LowerUpperDecorator.class);
 
+    /**
+     * Constructor method
+     * @param text_input
+     */
     public LaTeXDecorator(TextInterface text_input){super(text_input);}
     /**
      * Method to get text after the desired transformation

@@ -6,11 +6,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Class to upper, lower or capitalize the input.
  * This class extends TextInterfaceDecorator
- * Has a 'mode' attribute that is responsible for assigning right transformation in getTransformedText().
- * 3 modes:
- * mode = 0 - Upper all characters
- * mode = 1 - Lower all characters
- * mode = 2 - Capitalize first character
+ * Has a 'mode' attribute that is responsible for assigning right transformation.
  * @author Eliza
  *
  */
@@ -18,6 +14,11 @@ import org.slf4j.LoggerFactory;
 public class LowerUpperDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(LowerUpperDecorator.class);
     private final int mode;
+    /**
+     * Constructor method
+     * @param text_input_instance
+     * @param mode value from(0 - upper all characters;1 - lower all characters; 2 - capitalize)
+     */
     public LowerUpperDecorator(TextInterface text_input_instance, int mode) {
         super(text_input_instance);
         this.mode = mode;
