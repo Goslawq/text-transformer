@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.text.DecimalFormat;
 
+/**
+ * Class that changes the number written to written in text
+ */
 public class NumToTextDecorator extends TextInterfaceDecorator{
     private static final Logger logger = LoggerFactory.getLogger(NumToTextDecorator.class);
     public NumToTextDecorator(TextInterface text_input){super(text_input);}
@@ -61,7 +64,9 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
     };
 
     //private numToTextDecorator() {}
-
+    /**
+     * class for bilions and milions that uses convertLessThenOneThousand to change them into text
+     */
     private static String return_num_part(int number,String num){//usławnia miliony+miliardy
         String _trad;
         if(number<2){ _trad= num+" ";}
@@ -72,7 +77,9 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
                     + " "+num+"ów ";}
         return _trad;
     }
-
+    /**
+     * Class for changing numbers less then 1000 into text
+     */
     private static String convertLessThanOneThousand(int number) {//do stówy
 
         String soFar;
@@ -96,15 +103,20 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
         return soFar;
     }
 
-
+    /**
+     * Method to get text after the desired transformation
+     * @return String
+     */
     @Override
     public String getTransformedText() {
-        String[] text = super.getTransformedText().split(" ");
+        logger.debug("Entered number to text method");
+        String[] text = super.getTransformedText().split(" ");//splits words
         String output = "";
         for (String t : text) {
             try {
-                Long number = Long.parseLong(t);
+                Long number = Long.parseLong(t);//checks if word is a number
 
+                logger.debug("Found number");
                 // od 0 do 999 999 999 999
                 if (number == 0) {
                     return "zero";
@@ -120,42 +132,42 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
                 snumber = df.format(number);
 
                 // XXX000000000
-                int billions = Integer.parseInt(snumber.substring(0, 3));
+                int miliardy = Integer.parseInt(snumber.substring(0, 3));
                 // 000XXX000000
-                int millions = Integer.parseInt(snumber.substring(3, 6));
+                int miliony = Integer.parseInt(snumber.substring(3, 6));
                 // 000000XXX000
-                int hundredThousands = Integer.parseInt(snumber.substring(6, 9));
+                int tysiace = Integer.parseInt(snumber.substring(6, 9));
                 // 000000000XXX
-                int thousands = Integer.parseInt(snumber.substring(9, 12));
+                int reszta = Integer.parseInt(snumber.substring(9, 12));
 
                 String tradBillions;
-                switch (billions) {
+                switch (miliardy) {
                     case 0:
                         tradBillions = "";
                         break;
                     case 1:
-                        tradBillions = return_num_part(billions, "miliard");
+                        tradBillions = return_num_part(miliardy, "miliard");
                         break;
                     default:
-                        tradBillions = return_num_part(billions, "miliard");
+                        tradBillions = return_num_part(miliardy, "miliard");
                 }
                 String result = tradBillions;
 
                 String tradMillions;
-                switch (millions) {
+                switch (miliony) {
                     case 0:
                         tradMillions = "";
                         break;
                     case 1:
-                        tradMillions = return_num_part(millions, "milion");
+                        tradMillions = return_num_part(miliony, "milion");
                         break;
                     default:
-                        tradMillions = return_num_part(millions, "milion");
+                        tradMillions = return_num_part(miliony, "milion");
                 }
                 result = result + tradMillions;
 
                 String tradHundredThousands;
-                switch (hundredThousands) {
+                switch (tysiace) {
                     case 0:
                         tradHundredThousands = "";
                         break;
@@ -163,29 +175,31 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
                         tradHundredThousands = "tysiąc ";
                         break;
                     default:
-                        if (hundredThousands < 2) {
+                        if (tysiace < 2) {
                             tradHundredThousands = "tysiąc ";
-                        } else if (hundredThousands < 5) {
-                            tradHundredThousands = convertLessThanOneThousand(hundredThousands)
+                        } else if (tysiace < 5) {
+                            tradHundredThousands = convertLessThanOneThousand(tysiace)
                                     + " tysięce ";
                         } else {
-                            tradHundredThousands = convertLessThanOneThousand(hundredThousands)
+                            tradHundredThousands = convertLessThanOneThousand(tysiace)
                                     + " tysięcy ";
                         }
                 }
                 result = result + tradHundredThousands;
 
                 String tradThousand;
-                tradThousand = convertLessThanOneThousand(thousands);
+                tradThousand = convertLessThanOneThousand(reszta);
                 result = result + tradThousand;
 
                 // usuwamy podwójne spacje
                 //return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
                 output = output+" "+result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
             } catch (NumberFormatException n) {
+                logger.debug("not a number");
                 output = output+" "+t;
                 //throw new InvalidInputException(strings[t]);
             }}
+        logger.debug("Returning output: " + output);
         return output;
     }
 }

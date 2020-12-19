@@ -1,1 +1,13 @@
+pl\put\poznan\transformer\logic\ConcreteText.class
+pl\put\poznan\transformer\logic\NumToTextDecorator.class
+pl\put\poznan\transformer\logic\DeleteDoubleDecorator.class
+pl\put\poznan\transformer\logic\LaTeXDecorator.class
 pl\put\poznan\transformer\logic\ReverseCaseDecorator.class
+pl\put\poznan\transformer\logic\TextInterface.class
+pl\put\poznan\transformer\logic\TextInterfaceDecorator.class
+pl\put\poznan\transformer\logic\InverseTextDecorator.class
+pl\put\poznan\transformer\app\TextTransformerApplication.class
+pl\put\poznan\transformer\rest\TextTransformerController.class
+pl\put\poznan\transformer\logic\AbbreviationDecorator.class
+pl\put\poznan\transformer\logic\LowerUpperDecorator.class
+pl\put\poznan\transformer\logic\TextTransformer.class

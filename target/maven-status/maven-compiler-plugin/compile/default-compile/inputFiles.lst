@@ -1,12 +1,13 @@
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\AbbreviationDecorator.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\LowerUpperDecorator.java
-C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\ConcreteText.java
-C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\InverseTextDecorator.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\rest\TextTransformerController.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\TextInterface.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\TextTransformer.java
-C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\DeleteDoubleDecorator.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\LaTeXDecorator.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\NumToTextDecorator.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\TextInterfaceDecorator.java
+C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\ReverseCaseDecorator.java
+C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\ConcreteText.java
+C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\InverseTextDecorator.java
+C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\logic\DeleteDoubleDecorator.java
 C:\Users\wradz\Documents\GitHub\text-transformer\src\main\java\pl\put\poznan\transformer\app\TextTransformerApplication.java

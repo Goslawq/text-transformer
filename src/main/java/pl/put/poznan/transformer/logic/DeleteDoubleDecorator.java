@@ -5,10 +5,17 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Class the repetition of words written next to each other.
+ */
 public class DeleteDoubleDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(DeleteDoubleDecorator.class);
 
     public DeleteDoubleDecorator(TextInterface text_input){super(text_input);}
+    /**
+     * Method to get text after the desired transformation
+     * @return String
+     */
     @Override
     public String getTransformedText()
     {
@@ -27,6 +34,7 @@ public class DeleteDoubleDecorator extends TextInterfaceDecorator {
                     m.group(),
                     m.group(1));
         }
+        logger.debug("Returning output: " + text);
         return text;
     }
 }
