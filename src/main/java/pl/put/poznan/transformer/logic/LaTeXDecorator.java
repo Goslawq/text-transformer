@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 /**
- * Class responsible to transforming operators like #,$,{@literal &},{,},_ into LaTeX readable form.
+ * Class responsible to transforming operators like @,$,{@literal &},{,},_ into LaTeX readable form.
  * This class extends TextInterfaceDecorator
  * "#abcd" should be transformed to "\#abcd"
  * @author Eliza
@@ -27,7 +27,7 @@ public class LaTeXDecorator extends TextInterfaceDecorator {
         logger.debug("Computing deeper transformations");
         String input = super.getTransformedText();
         logger.debug("Got input: "+input);
-        String symbols = "#$&{}_";
+        String symbols = "@$&{}_";
         int j = 0;
         char[] output_array = new char[2*input.length()];
         char[] input_array = input.toCharArray();
