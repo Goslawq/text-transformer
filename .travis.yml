@@ -2,16 +2,6 @@ language: java
 script:
   - mvn package javadoc:javadoc
 deploy:
-  - provider: releases
-    file_glob: true
-    file:
-     - target/*.jar
-     - ./user_dictionary.txt
-    skip_cleanup: true
-    draft: true
-    api_key: $GITHUB_OAUTH_TOKEN
-    on:
-      branch: main
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_OAUTH_TOKEN
@@ -28,4 +18,5 @@ deploy:
     skip_cleanup: true
     api_key: $GITHUB_OAUTH_TOKEN
     on:
+      branch: main
       tags: true
