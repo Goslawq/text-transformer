@@ -9,15 +9,11 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 /**
- * This is main app class
+ * main function responsible only for launching REST service on port 8080
+ * Common usage: 127.0.0.1:8080/TekstDoZmiany?transforms=capitalize,invert,capitalize
  */
 @SpringBootApplication(scanBasePackages = {"pl.put.poznan.transformer.rest"})
 public class TextTransformerApplication {
-    /**
-     * Main function is responsible only for launching REST service on port 8080
-     * Common usage in browser: 127.0.0.1:8080/TekstDoZmiany?transforms=capitalize,invert,capitalize
-     * @param args command line arguments (not used)
-     */
     public static void main(String[] args){
         SpringApplication.run(TextTransformerApplication.class, args);
     }

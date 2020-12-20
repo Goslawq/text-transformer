@@ -6,31 +6,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class responssible for removal of repetition of words written next to each other.
- * Example "a a abc bc bc" transforms to "a abc bc"
+ * Class the repetition of words written next to each other.
+ * Halo hAlo hej halo do Halo hej hlo
  */
 public class DeleteDoubleDecorator extends TextInterfaceDecorator {
     private static final Logger logger = LoggerFactory.getLogger(DeleteDoubleDecorator.class);
 
-    /**
-     * Creates DeleteDoubleDecorator
-     * @param text_input deeper TextInterface instance
-     */
     public DeleteDoubleDecorator(TextInterface text_input){super(text_input);}
     /**
-     * Method to get text after the desired transformations
-     * @return text after the desired transformations
+     * Method to get text after the desired transformation
+     * @return String
      */
     @Override
     public String getTransformedText()
     {
         logger.debug("Entered DeleteDouble method");
         String text = super.getTransformedText();
-        String _double = "\\b(\\w+)(?:\\W+\\1\\b)+";
+        String _double = "\\b([a-zA-Z0-9ąĄćĆęĘśŚłŁźŹóÓżŻ]+)(?:\\W+\\1\\b)+";
         Pattern p
                 = Pattern.compile(_double,Pattern.CASE_INSENSITIVE);
-        //String dict_path="short_to_full.txt";
-        //Map<String, String> words_map = new HashMap<String, String>();
         Matcher m = p.matcher(text);
 
 
