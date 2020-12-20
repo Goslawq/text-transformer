@@ -8,15 +8,11 @@ import org.slf4j.LoggerFactory;
 import java.text.DecimalFormat;
 
 /**
- * Class that changes the numbers (made of digits) to their text form
+ * Class that changes the number written to written in text
+ * 99 to dziewiedziesiat dziewiec
  */
 public class NumToTextDecorator extends TextInterfaceDecorator{
     private static final Logger logger = LoggerFactory.getLogger(NumToTextDecorator.class);
-
-    /**
-     * Creates NumToTextDecorator instance
-     * @param text_input deeper TextInterface instance
-     */
     public NumToTextDecorator(TextInterface text_input){super(text_input);}
 
     private static final String[] setki = {//setki
@@ -109,7 +105,7 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
     }
 
     /**
-     * Method to get text after the desired transformations
+     * Method to get text after the desired transformation
      * @return String
      */
     @Override
