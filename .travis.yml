@@ -20,3 +20,13 @@ deploy:
     local_dir: ./target/site/apidocs
     on:
       branch: main
+  - provider: releases
+    file_glob: true
+    file:
+      - target/*.jar
+      - ./user_dictionary.txt
+    skip_cleanup: true
+    api_key: $GITHUB_OAUTH_TOKEN
+    on:
+      branch: main
+      tags: true
