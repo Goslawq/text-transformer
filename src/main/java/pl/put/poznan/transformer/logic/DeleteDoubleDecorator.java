@@ -26,7 +26,7 @@ public class DeleteDoubleDecorator extends TextInterfaceDecorator {
     {
         logger.debug("Entered DeleteDouble method");
         String text = super.getTransformedText();
-        String _double = "\b([a-zA-Z0-9ąĄćĆęĘśŚłŁźŹóÓżŻ]+)(?:\W+\1\b)+";
+        String _double = "\\b([a-zA-Z0-9ąĄćĆęĘśŚłŁźŹóÓżŻ]+)(?:\\W+\\1\\b)+";
         Pattern p
                 = Pattern.compile(_double,Pattern.CASE_INSENSITIVE);
         //String dict_path="short_to_full.txt";
