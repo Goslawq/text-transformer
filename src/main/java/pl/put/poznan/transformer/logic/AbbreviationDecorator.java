@@ -67,45 +67,22 @@ public class AbbreviationDecorator extends TextInterfaceDecorator{
 
             String from =entry.getKey();
             String to =entry.getValue();
+            String _from=from.substring(0, 1).toUpperCase() + from.substring(1);
+            String _to=to.substring(0, 1).toUpperCase() + to.substring(1);
 
             //if mode==True (extend)
             if(mode){
-                //escape dot character and add boundaries, \W in regex means [^a-zA-Z0-9_] (to prevent replacements such as 'drużyna'->'doktorużyna')
-                String from_a1="[\\W]"+from.replace(".","\\.")+"[\\W]";
-                String to_a1= " "+to+" ";
-
                 //replace
-                text = text.replaceAll(from_a1,to_a1);
-                logger.debug(from_a1+"--->"+ to_a1);
-
-                //escape dot, add boundaries and change first character to upper
-                String from_b1 = from.substring(0, 1).toUpperCase() + from.substring(1);
-                from_b1="[\\W]"+from_b1.replace(".","\\.")+"[\\W]";
-
-                String to_b1=" "+to.substring(0, 1).toUpperCase() + to.substring(1)+" ";
-
-                //replace, but with first character uppercase
-                text = text.replaceAll(from_b1, to_b1);
-                logger.debug(from_b1+"--->"+ to_b1);
+                text = text.replace(from,to);
+                text = text.replace(_from,_to);
 
             }
             //mode==False (shorten)
             else
             {
-                //add boundaries to match only whole words(to prevent replacements such as 'kadr'->'kadoktor')
-                String from_a2="\\b"+from+"\\b";
-
                 //replace
-                text = text.replaceAll(from_a2,to);
-                logger.debug(from_a2+"--->"+ to);
-
-                //add boundaries and change first character to upper
-                String from_b2 = "\\b"+from.substring(0, 1).toUpperCase() + from.substring(1)+"\\b";
-                String to_b2 = to.substring(0, 1).toUpperCase() + to.substring(1);
-
-                //replace, but with uppercase first character
-                text = text.replaceAll(from_b2, to_b2);
-                logger.debug(from_b2+"--->"+ to_b2);
+                text = text.replace(from,to);
+                text = text.replace(_from,_to);
             }
 
         }
