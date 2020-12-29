@@ -2,7 +2,6 @@ language: java
 script:
   - mvn package
   - mvn javadoc:javadoc
-  - mvn test
 deploy:
   - provider: pages
     skip_cleanup: true
