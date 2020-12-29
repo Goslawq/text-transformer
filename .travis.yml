@@ -1,6 +1,6 @@
 language: java
 script:
-  - mvn package javadoc:javadoc
+  - mvn package javadoc:javadoc test
 deploy:
   - provider: pages
     skip_cleanup: true
@@ -20,7 +20,7 @@ deploy:
     on:
       branch: main
       tags: true
-      
+
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
