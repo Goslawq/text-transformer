@@ -54,7 +54,7 @@ class TextTransformerTest {
     @Test
     void transformDoubleNumber() {
         transformer = new TextTransformer(new String[]{"double", "number"});
-        assertEquals("kosz5uje dziewięć dziewiędziesiąt osiem", transformer.transform("kosz5uje 9 9 9 98"));
+        assertEquals("kosz5uje dziewięć dziewiędziesiąt osiem", transformer.transform("kosz5uje 9 9 9 9 98"));
     }
 
     /*
