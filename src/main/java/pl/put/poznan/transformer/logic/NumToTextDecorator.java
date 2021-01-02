@@ -16,16 +16,16 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
     public NumToTextDecorator(TextInterface text_input){super(text_input);}
 
     private static final String[] setki = {//setki
-            " ",
-            " sto",
-            " dwieście",
-            " trzysta",
-            " czterysta",
-            " pięćset",
-            " sześćset",
-            " siedemset",
-            " osiemset",
-            " dzięćset"
+            "",
+            "sto ",
+            "dwieście ",
+            "trzysta ",
+            "czterysta ",
+            "pięćset ",
+            "sześćset ",
+            "siedemset ",
+            "osiemset ",
+            "dzięćset "
     };
 
     private static final String[] tensNames = {//dziesiątki
@@ -194,13 +194,13 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
 
                 // usuwamy podwójne spacje
                 //return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
-                output = output+" "+result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+                output = output+result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
             } catch (NumberFormatException n) {
                 logger.debug("not a number");
-                output = output+" "+t;
+                output = output+t;
                 //throw new InvalidInputException(strings[t]);
             }}
-        logger.debug("Returning output: " + output);
+        logger.debug("Returning output:" + output);
         return output;
     }
 }
