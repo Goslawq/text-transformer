@@ -194,7 +194,7 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
 
                 // usuwamy podwójne spacje
                 //return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
-                output = output+result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+                output = output+ result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
             } catch (NumberFormatException n) {
                 logger.debug("not a number");
                 output = output+t;
