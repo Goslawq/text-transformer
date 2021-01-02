@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 
 /**
  * Class reverses Case big letters to small letter and vice versa
+ * ReVerse CAse to rEvERSE caSE
  */
 
 public class ReverseCaseDecorator extends TextInterfaceDecorator{
