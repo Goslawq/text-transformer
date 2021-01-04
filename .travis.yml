@@ -1,6 +1,7 @@
 language: java
 script:
-  - mvn package javadoc:javadoc test
+  - mvn package
+  - mvn javadoc:javadoc
 deploy:
   - provider: pages
     skip_cleanup: true
