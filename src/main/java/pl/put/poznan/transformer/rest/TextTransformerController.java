@@ -34,8 +34,15 @@ public class TextTransformerController {
 
 
         // perform the transformation, you should run your logic here
-        TextTransformer transformer = new TextTransformer(transforms);
-        String output = transformer.transform(text);
+        String output;
+        if(text.equals("@availTransforms")&&transforms.length==0)
+        {
+            output="upper,lower,capital,latex,shorten,extend,double,number,invert,reverse";
+        }
+        else {
+            TextTransformer transformer = new TextTransformer(transforms);
+            output = transformer.transform(text);
+        }
         logger.debug("Returning output: "+output);
         return output;
     }
