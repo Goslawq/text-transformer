@@ -34,6 +34,6 @@ public class DeleteDoubleDecorator extends TextInterfaceDecorator {
                     m.group(1));
         }
         logger.debug("Returning output: " + text);
-        return text;
+        return text.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
     }
 }

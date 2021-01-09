@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.text.DecimalFormat;
+import java.lang.String;
 
 /**
  * Class that changes the number written to written in text
@@ -194,13 +195,13 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
 
                 // usuwamy podwójne spacje
                 //return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
-                output = output+ result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
+                output = output+" "+result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
             } catch (NumberFormatException n) {
                 logger.debug("not a number");
-                output = output+t;
+                output = output+" "+t;
                 //throw new InvalidInputException(strings[t]);
             }}
         logger.debug("Returning output:" + output);
-        return output;
+        return output.substring(1);
     }
 }
