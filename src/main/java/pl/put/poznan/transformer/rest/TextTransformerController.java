@@ -11,7 +11,7 @@ import java.util.Arrays;
  * This is the main controller class, which binds and handles the request
  */
 @RestController
-@RequestMapping("/{text}")
+//@RequestMapping("/{text}")
 public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
@@ -21,7 +21,7 @@ public class TextTransformerController {
      * @param transforms array of strings describing wanted transformations
      * @return output Text after transformations
      */
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/{text}",method = RequestMethod.GET, produces = "application/json")
     public String get(@PathVariable String text,
                               @RequestParam(value="transforms", defaultValue="") String[] transforms) {
         //stop spam in console, when browser requests site icon
@@ -46,13 +46,28 @@ public class TextTransformerController {
         logger.debug("Returning output: "+output);
         return output;
     }
+
+    @RequestMapping(value="/transforms/",method = RequestMethod.GET, produces = "application/json")
+    public String get() {
+
+        logger.debug("got 'get availTransforms' request");
+
+        // perform the transformation, you should run your logic here
+
+        String output="upper,lower,capital,latex,shorten,extend,double,number,invert,reverse";
+
+
+        logger.debug("Returning output: "+output);
+        return output;
+    }
+
     /**
      * Binding responsible for handing POST requests
      * @param text input text
      * @param transforms array of strings describing wanted transformations
      * @return output Text after transformations
      */
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value="/{text}",method = RequestMethod.POST, produces = "application/json")
     public String post(@PathVariable String text,
                       @RequestBody String[] transforms) {
         logger.info("Got 'POST' request");
