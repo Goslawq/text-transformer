@@ -1,4 +1,4 @@
-package pl.put.poznan;
+package pl.put.poznan.client;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

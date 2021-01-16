@@ -14,13 +14,18 @@ deploy:
   - provider: releases
     file_glob: true
     file:
-      - target/*.jar
+      - TextTransformerServer/target/*.jar
+      - TextTransformerCerver/target/*.jar
       - ./user_dictionary.txt
     skip_cleanup: true
     api_key: $GITHUB_OAUTH_TOKEN
     on:
       branch: main
       tags: true
+
+before_deploy:
+  - chmod +x fix_names.sh
+  - fix_names.sh
 
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh

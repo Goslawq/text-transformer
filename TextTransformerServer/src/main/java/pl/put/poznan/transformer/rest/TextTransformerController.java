@@ -2,8 +2,7 @@ package pl.put.poznan.transformer.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import pl.put.poznan.transformer.logic.ConcreteText;
-import pl.put.poznan.transformer.logic.TextTransformer;
+import pl.put.poznan.transformer.logic.TextTransformerServer;
 
 import java.util.Arrays;
 
@@ -34,7 +33,7 @@ public class TextTransformerController {
 
 
         // perform the transformation, you should run your logic here
-        TextTransformer transformer = new TextTransformer(transforms);
+        TextTransformerServer transformer = new TextTransformerServer(transforms);
         String output = transformer.transform(text);
         
         logger.debug("Returning output: "+output);
@@ -69,7 +68,7 @@ public class TextTransformerController {
         logger.debug("Given text: "+text+" with parameters: "+Arrays.toString(transforms));
 
         // perform the transformation, you should run your logic here
-        TextTransformer transformer = new TextTransformer(transforms);
+        TextTransformerServer transformer = new TextTransformerServer(transforms);
         String output = transformer.transform(text);
         logger.debug("Returning output: "+output);
         return output;

@@ -1,4 +1,4 @@
-package pl.put.poznan;
+package pl.put.poznan.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TextTransformerTest {
+class TextTransformerServerTest {
 
-    TextTransformer transformer = null;
+    TextTransformerServer transformer = null;
 
     @BeforeEach
     void setUp() {
@@ -21,37 +21,37 @@ class TextTransformerTest {
 
     @Test
     void transformUpperLower() {
-        transformer = new TextTransformer(new String[]{"upper", "lower"});
+        transformer = new TextTransformerServer(new String[]{"upper", "lower"});
         assertEquals("stringgg testowy", transformer.transform("StRiNgGG tESTOWY"));
     }
 
     @Test
     void transformLowerCapitalize() {
-        transformer = new TextTransformer(new String[]{"lower", "capitalize"});
+        transformer = new TextTransformerServer(new String[]{"lower", "capitalize"});
         assertEquals("Stringgg Testowy", transformer.transform("StRiNgGG tESTOWY"));
     }
 
     @Test
     void transformCapitalizeLatex() {
-        transformer = new TextTransformer(new String[]{"capitalize", "latex"});
+        transformer = new TextTransformerServer(new String[]{"capitalize", "latex"});
         assertEquals("Łap\\@ Mnie \\$zczypie", transformer.transform("łap@ mnie $zczypie"));
     }
 
     @Test
     void transformLatexExtend() {
-        transformer = new TextTransformer(new String[]{"latex", "extend"});
+        transformer = new TextTransformerServer(new String[]{"latex", "extend"});
         assertEquals("Magister, doktor \\& profesor to przykł\\@dowe \\$topnie\\_naukowe", transformer.transform("Mgr, dr & prof. to przykł@dowe $topnie_naukowe"));
     }
 
     @Test
     void transformExtendDouble() {
-        transformer = new TextTransformer(new String[]{"extend", "double"});
+        transformer = new TextTransformerServer(new String[]{"extend", "double"});
         assertEquals("Doktor nie jest magister", transformer.transform("Dr dr nie jest mgr mgr"));
     }
 
     @Test
     void transformDoubleNumber() {
-        transformer = new TextTransformer(new String[]{"double", "number"});
+        transformer = new TextTransformerServer(new String[]{"double", "number"});
         assertEquals("kosz5uje dziewięć dziewiędziesiąt osiem", transformer.transform("kosz5uje 9 9 9 9 98"));
     }
 

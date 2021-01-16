@@ -3,7 +3,7 @@ package pl.put.poznan.transformer.logic;
 /**
  * Main logic here - this the part that creates and executes given transformations
  */
-public class TextTransformer {
+public class TextTransformerServer {
     private final String[] commands;
 
     /**
@@ -21,7 +21,7 @@ public class TextTransformer {
      * invert - consult documentation of InverseTextDecorator
      * reverse - consult documentation of ReverseCaseDecorator
      */
-    public TextTransformer(String[] params){
+    public TextTransformerServer(String[] params){
         this.commands=params;
     }
 
