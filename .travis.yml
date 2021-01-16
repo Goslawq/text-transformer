@@ -15,7 +15,7 @@ deploy:
     file_glob: true
     file:
       - ./TextTransformerServer/target/*.jar
-      - ./TextTransformerCerver/target/*.jar
+      - ./TextTransformerClient/target/*.jar
       - ./user_dictionary.txt
     skip_cleanup: true
     api_key: $GITHUB_OAUTH_TOKEN
