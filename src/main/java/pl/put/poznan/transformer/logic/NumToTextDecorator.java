@@ -6,30 +6,27 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.text.DecimalFormat;
+import java.lang.String;
 
 /**
- * Class that changes the numbers (made of digits) to their text form
+ * Class that changes the number written to written in text
+ * 99 to dziewiedziesiat dziewiec
  */
 public class NumToTextDecorator extends TextInterfaceDecorator{
     private static final Logger logger = LoggerFactory.getLogger(NumToTextDecorator.class);
-
-    /**
-     * Creates NumToTextDecorator instance
-     * @param text_input deeper TextInterface instance
-     */
     public NumToTextDecorator(TextInterface text_input){super(text_input);}
 
     private static final String[] setki = {//setki
-            " ",
-            " sto",
-            " dwieście",
-            " trzysta",
-            " czterysta",
-            " pięćset",
-            " sześćset",
-            " siedemset",
-            " osiemset",
-            " dzięćset"
+            "",
+            "sto ",
+            "dwieście ",
+            "trzysta ",
+            "czterysta ",
+            "pięćset ",
+            "sześćset ",
+            "siedemset ",
+            "osiemset ",
+            "dzięćset "
     };
 
     private static final String[] tensNames = {//dziesiątki
@@ -109,7 +106,7 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
     }
 
     /**
-     * Method to get text after the desired transformations
+     * Method to get text after the desired transformation
      * @return String
      */
     @Override
@@ -204,7 +201,7 @@ public class NumToTextDecorator extends TextInterfaceDecorator{
                 output = output+" "+t;
                 //throw new InvalidInputException(strings[t]);
             }}
-        logger.debug("Returning output: " + output);
-        return output;
+        logger.debug("Returning output:" + output);
+        return output.substring(1);
     }
 }
