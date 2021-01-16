@@ -2,27 +2,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.put.poznan</groupId>
-    <artifactId>TextTransformerClient</artifactId>
-    <version>1.0.5</version>
+    <parent>
+        <groupId>pl.put.poznan</groupId>
+        <artifactId>TextTransformer</artifactId>
+        <version>1.0.6</version>
+    </parent>
 
+
+    <artifactId>TextTransformerClient</artifactId>
+
+    <name>TextTransformerClient</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
-        </dependency>
-    </dependencies>
+
 
 
     <build>

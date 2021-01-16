@@ -6,7 +6,7 @@
 
   <groupId>pl.put.poznan</groupId>
   <artifactId>TextTransformer</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
   <packaging>pom</packaging>
 
   <name>TextTransformer</name>
@@ -83,6 +83,11 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
         </plugin>
       </plugins>
     </pluginManagement>

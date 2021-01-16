@@ -7,11 +7,13 @@
     <parent>
         <groupId>pl.put.poznan</groupId>
         <artifactId>TextTransformer</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
     </parent>
 
     <artifactId>TextTransformerServer</artifactId>
     <packaging>jar</packaging>
+
+    <name>TextTransformerServer</name>
 
     <properties>
         <java.version>11</java.version>
@@ -79,11 +81,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
             </plugin>
         </plugins>
     </build>
