@@ -11,7 +11,6 @@ import java.util.Arrays;
  * This is the main controller class, which binds and handles the request
  */
 @RestController
-//@RequestMapping("/{text}")
 public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
@@ -51,7 +50,7 @@ public class TextTransformerController {
     public String get() {
 
 
-        logger.debug("got GET request (get available transforms)");
+        logger.debug("Got 'GET' request (get available transforms)");
 
         // perform the transformation, you should run your logic here
 
