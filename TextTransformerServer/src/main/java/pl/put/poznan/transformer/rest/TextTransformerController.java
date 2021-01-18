@@ -47,7 +47,7 @@ public class TextTransformerController {
 
         // perform the transformation, you should run your logic here
 
-        String output="upper,lower,capital,latex,shorten,extend,double,number,invert,reverse";
+        String output="upper,lower,capitalize,latex,shorten,extend,double,number,invert,reverse";
 
 
         logger.debug("Returning output: "+output);
