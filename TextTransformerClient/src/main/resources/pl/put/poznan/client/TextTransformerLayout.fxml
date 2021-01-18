@@ -10,18 +10,19 @@
    <children>
       <TextArea fx:id="inputText" layoutX="27.0" layoutY="126.0" prefHeight="80.0" prefWidth="550.0" promptText="Please type the text you want to transform" />
       <ListView fx:id="leftList" editable="true" layoutX="16.0" layoutY="260.0" prefHeight="226.0" prefWidth="200.0" />
-      <ListView fx:id="rightList" layoutX="389.0" layoutY="235.0" prefHeight="273.0" prefWidth="200.0" style="-fx-background-color: Gray;" />
+      <ListView fx:id="rightList" layoutX="389.0" layoutY="235.0" prefHeight="273.0" prefWidth="200.0" />
       <Button fx:id="transformButton" layoutX="236.0" layoutY="415.0" mnemonicParsing="false" onAction="#transform" prefHeight="32.0" prefWidth="125.0" text="Transform!" />
       <TextArea fx:id="outputText" editable="false" layoutX="16.0" layoutY="518.0" prefHeight="68.0" prefWidth="573.0" promptText="Here you will see transformed text" />
       <Button fx:id="addButton" layoutX="236.0" layoutY="306.0" mnemonicParsing="false" onAction="#addItem" prefHeight="32.0" prefWidth="125.0" text="&lt;&lt; Add &lt;&lt;" />
       <Button fx:id="removeButton" layoutX="236.0" layoutY="347.0" mnemonicParsing="false" onAction="#removeItem" prefHeight="32.0" prefWidth="125.0" text="&gt;&gt; Remove &gt;&gt;" />
       <Label layoutX="37.0" layoutY="216.0" text="Selected Transformations" />
       <Label layoutX="409.0" layoutY="216.0" text="Available Transformations" />
-      <Label alignment="CENTER" layoutX="237.0" layoutY="101.0" prefHeight="18.0" prefWidth="116.0" text="Input Text" />
+      <Label alignment="CENTER" layoutX="245.0" layoutY="101.0" prefHeight="18.0" prefWidth="116.0" text="Input Text" />
       <Label alignment="CENTER" layoutX="245.0" layoutY="480.0" prefHeight="18.0" prefWidth="116.0" text="Transformed Text" />
-      <TextArea fx:id="IP" layoutX="27.0" layoutY="41.0" prefHeight="40.0" prefWidth="550.0" promptText="Please provide server IP" />
-      <Label layoutX="288.0" layoutY="23.0" text="IP" />
+      <TextArea fx:id="IP" layoutX="27.0" layoutY="41.0" prefHeight="40.0" prefWidth="271.0" promptText="Please provide server IP" text="127.0.0.1" />
+      <Label layoutX="297.0" layoutY="14.0" text="IP" />
       <Button fx:id="transformButton1" layoutX="54.0" layoutY="486.0" mnemonicParsing="false" onAction="#moveDown" prefHeight="0.0" prefWidth="125.0" text="Move DOWN \/" />
       <Button fx:id="transformButton11" layoutX="54.0" layoutY="235.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="18.0" prefWidth="125.0" text="Move UP /\" />
+      <Button layoutX="306.0" layoutY="40.0" mnemonicParsing="false" onAction="#getAvailiabeTransformations" prefHeight="40.0" prefWidth="271.0" text="Get availiable transformations" />
    </children>
 </AnchorPane>

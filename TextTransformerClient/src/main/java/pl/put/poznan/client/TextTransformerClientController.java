@@ -12,6 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.input.MouseEvent;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.Locale;
 
 public class TextTransformerClientController {
@@ -23,7 +31,7 @@ public class TextTransformerClientController {
     public Button addButton;
     public Button removeButton;
     public TextArea IP;
-    private String [] availableTransformations={"Capitalize","Invert","Expand"};
+    private String [] availableTransformations={};
     public void initialize() {
         inputText.setText("Startowy tekst");
 
@@ -51,10 +59,53 @@ public class TextTransformerClientController {
         });
 
     }
+    private String getSelectedTransforms(){
+        String transforms="";
+        transforms=leftList.getItems().toString();
+        transforms=transforms.replaceAll(" ","");
+        transforms=transforms.substring(1,transforms.length()-1);
+        return transforms;
+    }
 
     @FXML protected void transform(ActionEvent event){
-        System.out.println(inputText.getText());
-        outputText.setText(inputText.getText()+"?transformations="+leftList.getItems().toString());
+        URL url = null;
+        try {
+            String x=inputText.getText();
+            x=x.replaceAll(" ","%20");
+            url = new URL("http://"+IP.getText()+":8080/"+x+"?transforms="+getSelectedTransforms());
+
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(500);
+            con.setReadTimeout(500);
+
+            int status = con.getResponseCode();
+
+            if(status==200){
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                String response = content.toString();
+                outputText.setText(response);
+                in.close();
+            }else{
+                System.out.println("Connection failed");
+            }
+            con.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        //outputText.setText(inputText.getText());
     }
 
     public void addItem(ActionEvent actionEvent) {
@@ -92,6 +143,42 @@ public class TextTransformerClientController {
             test.set(index+1,old_up);
             leftList.setItems(test);
             leftList.getSelectionModel().select(index+1);
+        }
+    }
+
+    public void getAvailiabeTransformations(ActionEvent actionEvent) {
+        URL url = null;
+        try {
+            url = new URL("http://"+IP.getText()+":8080/transforms/");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(500);
+            con.setReadTimeout(500);
+            int status = con.getResponseCode();
+            if(status==200){
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                String transformations= content.toString();
+                String [] tansf_array=transformations.split(",");
+                rightList.getItems().clear();
+                for (String t: tansf_array) {
+                    rightList.getItems().add(t);
+                }
+                in.close();
+            }else{
+                System.out.println("Connection failed");
+            }
+            con.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
