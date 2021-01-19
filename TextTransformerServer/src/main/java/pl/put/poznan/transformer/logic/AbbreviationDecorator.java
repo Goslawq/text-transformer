@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -56,7 +58,7 @@ public class AbbreviationDecorator extends TextInterfaceDecorator{
 
         try {
             File myObj = new File(dict_path);
-            Scanner myReader = new Scanner(myObj);
+            Scanner myReader = new Scanner(myObj, StandardCharsets.UTF_8);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] result = data.split(";");
@@ -64,8 +66,12 @@ public class AbbreviationDecorator extends TextInterfaceDecorator{
                 else words_map.put(result[1], result[0]);
             }
             myReader.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e ) {
             logger.debug("An error occurred while opening file.");
+            return text;
+        }
+        catch (IOException e ) {
+            logger.debug("An error occurred while opening charset.");
             return text;
         }
 

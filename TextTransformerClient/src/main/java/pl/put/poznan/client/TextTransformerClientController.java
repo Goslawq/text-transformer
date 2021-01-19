@@ -8,11 +8,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.Locale;
+import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+
 
 public class TextTransformerClientController {
     public ListView<String> leftList;
@@ -23,9 +29,13 @@ public class TextTransformerClientController {
     public Button addButton;
     public Button removeButton;
     public TextArea IP;
-    private String [] availableTransformations={"Capitalize","Invert","Expand"};
+    public Button getTransformationsButton;
+    private String [] availableTransformations={};
+    private static final Logger logger = LoggerFactory.getLogger(TextTransformerClientController.class);
     public void initialize() {
+
         inputText.setText("Startowy tekst");
+        transformButton.setDisable(true);
 
         ObservableList<String> right=FXCollections.observableArrayList(availableTransformations);
         rightList.setItems(right);
@@ -49,17 +59,65 @@ public class TextTransformerClientController {
                 }
             }
         });
+        logger.info("Client initialized");
 
+
+    }
+    private String getSelectedTransforms(){
+        String transforms="";
+        transforms=leftList.getItems().toString();
+        transforms=transforms.replaceAll(" ","");
+        transforms=transforms.substring(1,transforms.length()-1);
+        logger.debug("Selected transformations (from GUI): "+transforms);
+        return transforms;
+    }
+
+    public void connectionErrorAlert(String text){
+        JOptionPane.showMessageDialog(null, text);
     }
 
     @FXML protected void transform(ActionEvent event){
-        System.out.println(inputText.getText());
-        outputText.setText(inputText.getText()+"?transformations="+leftList.getItems().toString());
+        URL url = null;
+        try {
+            String inputTextToSend=inputText.getText();
+            inputTextToSend=inputTextToSend.replaceAll("[\n]"," ");
+            inputTextToSend=URLEncoder.encode(inputTextToSend, StandardCharsets.UTF_8.toString());
+            inputTextToSend=inputTextToSend.replaceAll("[+]","%20");
+
+            url=new URL("http",IP.getText(),8080,"/"+inputTextToSend+"?transforms="+getSelectedTransforms());
+            logger.debug("Request: "+ url.toString());
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(500);
+            con.setReadTimeout(500);
+
+            int status = con.getResponseCode();
+
+            if(status==200){
+                logger.debug("Transform request successful");
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),StandardCharsets.UTF_8));
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                String response = content.toString();
+                outputText.setText(response);
+                in.close();
+
+            }else{
+                connectionErrorAlert("Connection failed");
+                logger.debug("Transform request failed");
+            }
+            con.disconnect();
+        } catch (IOException e) {
+           connectionErrorAlert("Connection error");
+            logger.debug("Transform request failed");
+        }
     }
 
     public void addItem(ActionEvent actionEvent) {
         String sel = (String) rightList.getSelectionModel().getSelectedItem();
-        //System.out.println(sel);
         if (sel!=null)
             leftList.getItems().add(sel);
     }
@@ -92,6 +150,44 @@ public class TextTransformerClientController {
             test.set(index+1,old_up);
             leftList.setItems(test);
             leftList.getSelectionModel().select(index+1);
+        }
+    }
+
+    public void getAvailiabeTransformations(ActionEvent actionEvent) {
+        URL url = null;
+        try {
+            url = new URL("http://"+IP.getText()+":8080/transforms/");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(500);
+            con.setReadTimeout(500);
+            int status = con.getResponseCode();
+            if(status==200){
+                logger.debug("Get available transforms request successful");
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                String transformations= content.toString();
+                String [] tansf_array=transformations.split(",");
+                rightList.getItems().clear();
+                for (String t: tansf_array) {
+                    rightList.getItems().add(t);
+                }
+                in.close();
+                transformButton.setDisable(false);
+                getTransformationsButton.setDisable(true);
+                IP.setEditable(false);
+            }else{
+                connectionErrorAlert("Connection failed");
+                logger.debug("Get available transforms request failed");
+            }
+            con.disconnect();
+        }  catch (IOException e) {
+            connectionErrorAlert("Connection error");
+            logger.debug("Get available transforms request failed");
         }
     }
 }
