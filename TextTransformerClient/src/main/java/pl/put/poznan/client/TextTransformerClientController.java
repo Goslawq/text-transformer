@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.input.MouseEvent;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +20,8 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLOutput;
 import java.util.Locale;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 public class TextTransformerClientController {
     public ListView<String> leftList;
@@ -29,9 +32,11 @@ public class TextTransformerClientController {
     public Button addButton;
     public Button removeButton;
     public TextArea IP;
+    public Button getTransformationsButton;
     private String [] availableTransformations={};
     public void initialize() {
         inputText.setText("Startowy tekst");
+        transformButton.setDisable(true);
 
         ObservableList<String> right=FXCollections.observableArrayList(availableTransformations);
         rightList.setItems(right);
@@ -56,6 +61,8 @@ public class TextTransformerClientController {
             }
         });
 
+
+
     }
     private String getSelectedTransforms(){
         String transforms="";
@@ -65,10 +72,15 @@ public class TextTransformerClientController {
         return transforms;
     }
 
+    public void connectionErrorAlert(String text){
+        JOptionPane.showMessageDialog(null, text);
+    }
+
     @FXML protected void transform(ActionEvent event){
         URL url = null;
         try {
             String inputTextToSend=inputText.getText();
+            inputTextToSend=inputTextToSend.replaceAll("[\n]"," ");
             inputTextToSend=URLEncoder.encode(inputTextToSend, StandardCharsets.UTF_8.toString());
             inputTextToSend=inputTextToSend.replaceAll("[+]","%20");
 
@@ -92,20 +104,12 @@ public class TextTransformerClientController {
                 outputText.setText(response);
                 in.close();
             }else{
-                System.out.println("Connection failed");
+                connectionErrorAlert("Connection failed");
             }
             con.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+           connectionErrorAlert("Connection error");
         }
-
-
-
-        //outputText.setText(inputText.getText());
     }
 
     public void addItem(ActionEvent actionEvent) {
@@ -169,16 +173,15 @@ public class TextTransformerClientController {
                     rightList.getItems().add(t);
                 }
                 in.close();
+                transformButton.setDisable(false);
+                getTransformationsButton.setDisable(true);
+                IP.setEditable(false);
             }else{
-                System.out.println("Connection failed");
+                connectionErrorAlert("Connection failed");
             }
             con.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }  catch (IOException e) {
+            connectionErrorAlert("Connection error");
         }
     }
 }

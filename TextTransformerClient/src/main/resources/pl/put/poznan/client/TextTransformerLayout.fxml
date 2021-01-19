@@ -21,8 +21,8 @@
       <Label alignment="CENTER" layoutX="245.0" layoutY="480.0" prefHeight="18.0" prefWidth="116.0" text="Transformed Text" />
       <TextArea fx:id="IP" layoutX="27.0" layoutY="41.0" prefHeight="40.0" prefWidth="271.0" promptText="Please provide server IP" text="127.0.0.1" />
       <Label layoutX="297.0" layoutY="14.0" text="IP" />
-      <Button fx:id="transformButton1" layoutX="54.0" layoutY="486.0" mnemonicParsing="false" onAction="#moveDown" prefHeight="0.0" prefWidth="125.0" text="Move DOWN \/" />
-      <Button fx:id="transformButton11" layoutX="54.0" layoutY="235.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="18.0" prefWidth="125.0" text="Move UP /\" />
-      <Button layoutX="306.0" layoutY="40.0" mnemonicParsing="false" onAction="#getAvailiabeTransformations" prefHeight="40.0" prefWidth="271.0" text="Get availiable transformations" />
+      <Button layoutX="54.0" layoutY="486.0" mnemonicParsing="false" onAction="#moveDown" prefHeight="0.0" prefWidth="125.0" text="Move DOWN \/" />
+      <Button layoutX="54.0" layoutY="235.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="18.0" prefWidth="125.0" text="Move UP /\" />
+      <Button fx:id="getTransformationsButton" layoutX="306.0" layoutY="40.0" mnemonicParsing="false" onAction="#getAvailiabeTransformations" prefHeight="40.0" prefWidth="271.0" text="Get availiable transformations" />
    </children>
 </AnchorPane>
