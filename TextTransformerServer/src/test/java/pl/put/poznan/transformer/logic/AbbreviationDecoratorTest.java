@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class AbbreviationDecoratorTest {
 
@@ -83,6 +85,76 @@ class AbbreviationDecoratorTest {
     public void testShorten_5() {
         abbDecInstance = new AbbreviationDecorator(new ConcreteText("takie słowa jak między innymi doktorski nie powinny być zamieniane na drski, ale samo doktor już na przykład tak."),false );
         assertEquals("takie słowa jak m. in. doktorski nie powinny być zamieniane na drski, ale samo dr już np. tak.",abbDecInstance.getTransformedText());
+    }
+
+    @Test
+    public void mockTest_shorten_1(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("na przykład Na przykład ciąg dalszy nastąpi");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,false);
+        assertEquals("np. Np. cdn.",abbDecInstance.getTransformedText());
+    }
+
+    @Test
+    public void mockTest_shorten_2(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("Bieżącego roku profesorski profesor i tym podobne i tak dalej.");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,false);
+        assertEquals("Br. profesorski prof. itp. itd..",abbDecInstance.getTransformedText());
+    }
+
+    @Test
+    public void mockTest_shorten_3(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("Numer numerowy język językowy");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,false);
+        assertEquals("Nr numerowy jęz. językowy",abbDecInstance.getTransformedText());
+    }
+
+    @Test
+    public void mockTest_shorten_4(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("Między innymi doktor magister Nowak jest tu dziś z nami");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,false);
+        assertEquals("M. in. dr mgr Nowak jest tu dziś z nami",abbDecInstance.getTransformedText());
+    }
+
+    @Test
+    public void mockTest_extend_1(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("nr prof. itp. itd. kadr.");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,true);
+        assertEquals("numer profesor i tym podobne i tak dalej kadr.",abbDecInstance.getTransformedText());
+    }
+    @Test
+    public void mockTest_extend_2(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("....nr nr nr nr nra nr....");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,true);
+        assertEquals("....numer numer numer numer nra numer....",abbDecInstance.getTransformedText());
+    }
+    @Test
+    public void mockTest_extend_3(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("Br Br. br br. np. Np..");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,true);
+        assertEquals("Br Bieżącego roku br bieżącego roku na przykład Na przykład.",abbDecInstance.getTransformedText());
+    }
+
+    @Test
+    public void mockTest_extend_4(){
+        TextInterface mock_text_interface = mock(TextInterface.class);
+        when(mock_text_interface.getTransformedText()).thenReturn("Mgr, dr, prof. to przykładowe stopnie naukowe");
+
+        abbDecInstance=new AbbreviationDecorator(mock_text_interface,true);
+        assertEquals("Magister, doktor, profesor to przykładowe stopnie naukowe",abbDecInstance.getTransformedText());
     }
 
 }
