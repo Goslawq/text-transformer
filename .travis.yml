@@ -1,7 +1,7 @@
 language: java
-os: windows
 script:
   - mvn package
+  - mvn jfx:jar
   - mvn javadoc:aggregate
 deploy:
   - provider: pages
@@ -16,13 +16,18 @@ deploy:
     file_glob: true
     file:
       - ./TextTransformerServer/target/*.jar
-      - ./TextTransformerClient/target/*-jar-with-dependencies.jar
+      - ./TextTransformerClient/target/*.jar
+      - ./TextTransformerClient/target/lib.tar.gz
       - ./TextTransformerServer/user_dictionary.txt
     skip_cleanup: true
     api_key: $GITHUB_OAUTH_TOKEN
     on:
       branch: main
       tags: true
+
+before_deploy:
+  - chmod +x prepare_deploy.sh
+  - ./prepare_deploy.sh
 
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
