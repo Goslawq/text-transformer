@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Class that shortens words to their abbreviations and extends them to full form.
  * Takes boolean 'mode' attribute specifying operation that should be performed:
  *    mode = true - extend abbreviations (for example "Mgr, dr, prof. to przykładowe stopnie naukowe" should be transformed to "Magister, doktor, profesor to przykładowe stopnie naukowe")
- *    mode = false - shorten words to abbreviations (for example "Między innymi doktor magister Nowak jest tu dziś nami" should be transformed to "M. in. dr mgr. Nowak jest tu dziś z nami")
+ *    mode = false - shorten words to abbreviations (for example "Między innymi doktor magister Nowak jest tu dziś nami" should be transformed to "M. in. dr mgr Nowak jest tu dziś z nami")
  * The dictionary file (user_dictionary.txt), containing words to shorten/extend
  * is placed in the main directory of this project - feel free to edit it so that the application lives up to your expectations.
  * All words in user_dictionary should be in lowercase - replacement will be performed automatically also with their first-capital-letter form.
@@ -83,7 +83,15 @@ public class AbbreviationDecorator extends TextInterfaceDecorator{
             //if mode==True (extend)
             if(mode){
                 //escape dot character and add boundaries
-                String from_a1="(\\b|^)"+from.replace(".","\\.")+"(\\b|\\B|$)";
+                //if expression contain dot, handle boundaries without \B regex token
+                String from_a1;
+                if(from.indexOf('.')==-1)
+                {
+                    from_a1="(\\b|^)"+from.replace(".","\\.")+"(\\b|$)";
+                }
+                else {
+                    from_a1 = "(\\b|^)" + from.replace(".", "\\.") + "(\\b|\\B|$)";
+                }
                 String to_a1=to;
 
                 //replace
@@ -93,8 +101,16 @@ public class AbbreviationDecorator extends TextInterfaceDecorator{
 
                 //escape dot, add boundaries and change first character to upper
                 String from_b1 = from.substring(0, 1).toUpperCase() + from.substring(1);
-                from_b1="(\\b|^)"+from_b1.replace(".","\\.")+"(\\b|\\B|$)";
 
+                //if expression contain dot, handle boundaries without \B regex token
+                if(from.indexOf('.')==1)
+                {
+                    from_b1 = "(\\b|^)" + from_b1.replace(".", "\\.") + "(\\b|$)";
+                }
+                else
+                {
+                    from_b1 = "(\\b|^)" + from_b1.replace(".", "\\.") + "(\\b|\\B|$)";
+                }
                 String to_b1=to.substring(0, 1).toUpperCase() + to.substring(1);
 
                 //replace, but with first character uppercase
